@@ -1,15 +1,31 @@
 import heapq
-from collections import deque 
+from collections import deque
 
-class Cliente: 
-    def __init__(self, nome, grau_prioride):
-        self.nome = nome;
-        self.grau_prioridade = grau_prioride;
-        
-    def __lt__(self,other):
-        return self.grau_prioridade < other.grau_prioridade;
-    
-    def __repr__(self):
-        tipo = "prioridade" if self.grau_prioridade < 5 else "prioridade normal"
-        return f"[{tipo} - Grau {self.grau_prioridade}] {self.nome}"
+class Cliente:
+    def __init__(self, nome, eh_prioridade):
+        self.nome = nome
+        self.eh_prioridade = eh_prioridade
 
+def adicionar_cliente(sistema):
+    nome = input("\ninsira o nome do ciente:")
+    prioridade = input("\nqual o nível de prioridade? (Normal/Alta):").strip().upper()
+
+    eh_prioridade = (prioridade == "ALTA")
+    novo_cliente = Cliente(nome, eh_prioridade)
+
+    if prioridade == "ALTA":
+        heapq.heappush(sistema['prioridade'], novo_cliente)
+        print(f"o cliente ---> {nome} foi adicionado a fila de alta prioridade\n")
+
+    elif prioridade == "NORMAL":
+        sistema['normal'].append(novo_cliente)
+        print(f"o cliente ---> {nome} foi adicionado a fila de prioridade normal\n")
+    else: 
+        print("Erro! Tente Novamente.")
+
+def start():
+    return {
+        "prioridade": [],
+        "normal": deque(),
+        "historico": []
+    }
