@@ -8,3 +8,4 @@ class Cliente:
         if self.tipo == "prioritario":
             return f"{self.nome} (prioridade {self.prioridade})"
         return f"{self.nome} (normal)"
+
