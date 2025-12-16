@@ -1,5 +1,7 @@
+#importações
 from collections import deque
 
+#criação da classe e funções que ela possui
 class Fila:
     def __init__(self):
         self.fila = deque()
